@@ -16,12 +16,15 @@ jobs:
 
     steps:
     - name: Git Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v6
       with:
         path: build
 
     - name: Add MSBuild to PATH
-      uses: microsoft/setup-msbuild@v1
+      uses: microsoft/setup-msbuild@v2
+
+    - name: Add Subversion to PATH
+      uses: ampscm/setup-subversion@v1
 
     - name: Setup VSTest Path
       uses: darenm/Setup-VSTest@v1
@@ -35,7 +38,7 @@ jobs:
       run: msbuild /m /v:m /restore /t:rebuild /p:UseVsSdkVersion=17.0 /p:Configuration=Release ${{env.SOLUTION_FILE_PATH}} @build\scripts\msbuild-version.rsp
 
     - name: Package vsix 2022
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v6
       with:
         name: Ankh-VSIX-2022
         path: build/src/Ankh.Package/bin/release/Ankh.Package.vsix
