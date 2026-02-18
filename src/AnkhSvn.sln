@@ -5,9 +5,10 @@ VisualStudioVersion = 17.0.31410.414
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Definitions", "Definitions", "{01F3ED56-C896-409C-8464-DB82B3AF1364}"
 	ProjectSection(SolutionItems) = preProject
-		tools\Ankh-Common.targets = tools\Ankh-Common.targets
 		BUILD.md = BUILD.md
 		..\CONTRIBUTORS.txt = ..\CONTRIBUTORS.txt
+		Directory.Build.props = Directory.Build.props
+		Directory.Packages.props = Directory.Packages.props
 		LICENSE.rtf = LICENSE.rtf
 		NOTICE.txt = NOTICE.txt
 		..\README.md = ..\README.md
@@ -142,8 +143,8 @@ Global
 		{62F97060-6A9E-477D-B15B-E1A1F5320039} = {9B380404-6594-4737-8518-291DEDEF3496}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		DPBuild = 5
 		SolutionGuid = {DD5748C0-06A1-432B-BD8A-7F6F50291089}
+		DPBuild = 5
 	EndGlobalSection
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = AnkhSvn.2010.vsmdi

@@ -24,28 +24,8 @@ using Ankh;
 // associated with an assembly.
 
 [assembly: CLSCompliant(true)] 
-[assembly: AssemblyTitle("AnkhSVN - Subversion support for Visual Studio")]
-[assembly: AssemblyDescription("AnkhSVN - Subversion support for Visual Studio")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany(AnkhId.AssemblyCompany)]
-[assembly: AssemblyProduct(AnkhId.AssemblyProduct)]
-[assembly: AssemblyCopyright(AnkhId.AssemblyCopyright)]
-[assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: NeutralResourcesLanguage("en-US")]
 
 // We only want the Connect class to be visible
 [assembly: System.Runtime.InteropServices.ComVisible(false)]
-
-//
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version 
-//      Revision
-//      Build Number
-//
-// You can specify all the value or you can default the Revision and Build Numbers 
-// by using the '*' as shown below:
-
-[assembly: AssemblyVersion("2.9.19")]

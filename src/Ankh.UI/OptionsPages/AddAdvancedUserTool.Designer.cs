@@ -32,7 +32,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.okButton = new System.Windows.Forms.Button();
-            this.cancelButton = new System.Windows.Forms.Button();
+            this.theCancelButton = new System.Windows.Forms.Button();
             this.commandTextBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
@@ -73,18 +73,18 @@
             this.okButton.UseVisualStyleBackColor = true;
             this.okButton.Click += new System.EventHandler(this.okButton_Click);
             // 
-            // cancelButton
+            // theCancelButton
             // 
-            this.cancelButton.AccessibleName = "cancelButton";
-            this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelButton.Location = new System.Drawing.Point(311, 68);
-            this.cancelButton.Name = "cancelButton";
-            this.cancelButton.Size = new System.Drawing.Size(75, 28);
-            this.cancelButton.TabIndex = 22;
-            this.cancelButton.Text = "Cancel";
-            this.cancelButton.UseVisualStyleBackColor = true;
-            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
+            this.theCancelButton.AccessibleName = "cancelButton";
+            this.theCancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.theCancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.theCancelButton.Location = new System.Drawing.Point(311, 68);
+            this.theCancelButton.Name = "theCancelButton";
+            this.theCancelButton.Size = new System.Drawing.Size(75, 28);
+            this.theCancelButton.TabIndex = 22;
+            this.theCancelButton.Text = "Cancel";
+            this.theCancelButton.UseVisualStyleBackColor = true;
+            this.theCancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
             // commandTextBox
             // 
@@ -99,21 +99,15 @@
             // 
             this.AcceptButton = this.okButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.cancelButton;
+            this.CancelButton = this.theCancelButton;
             this.ClientSize = new System.Drawing.Size(479, 108);
             this.Controls.Add(this.commandTextBox);
-            this.Controls.Add(this.cancelButton);
+            this.Controls.Add(this.theCancelButton);
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.extensionTextBox);
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "AddAdvancedUserTool";
-            this.ShowIcon = false;
-            this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Add external tool";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -126,7 +120,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         public System.Windows.Forms.Button okButton;
-        public System.Windows.Forms.Button cancelButton;
+        public System.Windows.Forms.Button theCancelButton;
         private System.Windows.Forms.TextBox commandTextBox;
     }
 }

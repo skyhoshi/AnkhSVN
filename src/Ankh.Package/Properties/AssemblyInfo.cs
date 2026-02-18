@@ -24,13 +24,6 @@ using Ankh;
 // associated with an assembly.
 
 [assembly: CLSCompliant(true)]
-[assembly: AssemblyTitle("AnkhSvn Package")]
-[assembly: AssemblyDescription("AnkhSVN - Subversion Support for Visual Studio")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany(AnkhId.AssemblyCompany)]
-[assembly: AssemblyProduct(AnkhId.AssemblyProduct)]
-[assembly: AssemblyCopyright(AnkhId.AssemblyCopyright)]
-[assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]
 [assembly: NeutralResourcesLanguage("en-US")]
@@ -44,8 +37,6 @@ using Ankh;
 //
 // You can specify all the values or you can default the Revision and Build Numbers 
 // by using the '*' as shown below:
-
-[assembly: AssemblyVersion("2.9.20")]
 
 // TODO: These should not be set in release code
 #if !FOR_MSI

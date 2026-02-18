@@ -29,11 +29,11 @@ echo Prepare building AnkhSVN %ANKHSVN_MAJOR%.%ANKHSVN_MINOR%.%ANKHSVN_PATCH%
 SET ANKHSVN_VER=%ANKHSVN_MAJOR%.%ANKHSVN_MINOR%.%ANKHSVN_PATCH%
 
 (
-  echo /p:ForceAssemblyVersion=%ANKHSVN_MAJOR%.%ANKHSVN_MINOR%.%ANKHSVN_PATCH%
-  echo /p:ForceAssemblyInformationalVersion=%ANKHSVN_MAJOR%.%ANKHSVN_MINOR%.%ANKHSVN_PATCH%-%GIT_SHA%
-  echo /p:ForceAssemblyCompany="AnkhSVN Project, powered by AmpScm, QQn & GitHub"
-  echo /p:ForceAssemblyCopyright="Apache 2.0 licensed. See https://github.com/AmpScm/AnkhSVN"
-   echo /p:ForceAssemblyConfiguration=Release-%GIT_SHA%
+  echo /p:AssemblyVersion=%ANKHSVN_MAJOR%.%ANKHSVN_MINOR%.%ANKHSVN_PATCH%
+  echo /p:AssemblyInformationalVersion=%ANKHSVN_MAJOR%.%ANKHSVN_MINOR%.%ANKHSVN_PATCH%-%GIT_SHA%
+  echo /p:AssemblyCompany="AnkhSVN Project, powered by AmpScm & GitHub"
+  echo /p:AssemblyCopyright="Apache 2.0 licensed. See https://github.com/AmpScm/AnkhSVN"
+  echo /p:AssemblyConfiguration=Release-%GIT_SHA%
   echo /p:BuildBotBuild=true
   echo /p:RestoreForce=true
 ) > %RSPFILE%
