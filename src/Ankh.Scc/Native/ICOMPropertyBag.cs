@@ -21,36 +21,17 @@ using Microsoft.VisualStudio;
 
 namespace Ankh.Scc.Native
 {
-    /// <summary>
-    /// IPropertyBag but then with parsable HResult
-    /// </summary>
-    [InterfaceType(ComInterfaceType.InterfaceIsIUnknown), ComImport]
-    [Guid("55272A00-42CB-11CE-8135-00AA004BB851")]
-    interface ICOMPropertyBag
-    {
-        [PreserveSig, MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-        int Read(string pszPropName, out object pVar, IErrorLog pErrorLog, uint VARTYPE, object pUnkObj);
-
-        [PreserveSig, MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-        int Write(string pszPropName, ref object pVar);
-    }
-
+    [CLSCompliant(false)]
     public sealed class PropertyBag : IPropertyMap
     {
-        readonly ICOMPropertyBag _bag;
+        readonly IPropertyBag _bag;
         readonly SortedList<string, string> _toWrite = new SortedList<string, string>(StringComparer.OrdinalIgnoreCase);
 
-        internal PropertyBag(ICOMPropertyBag bag)
+        public PropertyBag(IPropertyBag bag)
         {
             if (bag == null)
                 throw new ArgumentNullException("bag");
             _bag = bag;
-        }
-
-        [CLSCompliant(false)]
-        public PropertyBag(IPropertyBag bag)
-            : this(bag as ICOMPropertyBag ?? new MyComPropertyBag(bag))
-        {
         }
 
         /// <summary>
@@ -64,14 +45,13 @@ namespace Ankh.Scc.Native
             if (string.IsNullOrEmpty(propName))
                 throw new ArgumentNullException("propName");
 
-            object var;
-            if (VSErr.Succeeded(_bag.Read(propName, out var, null, 0, null)))
+            try
             {
-                value = var as string;
-
+                _bag.Read(propName, out var rawValue, null, 0, null);
+                value = rawValue as string;
                 return value != null;
             }
-            else
+            catch (Exception)
             {
                 value = null;
                 return false;
@@ -85,9 +65,9 @@ namespace Ankh.Scc.Native
         /// <param name="value">The value.</param>
         public void SetValue(string propName, string value)
         {
-            if(string.IsNullOrEmpty(propName))
+            if (string.IsNullOrEmpty(propName))
                 throw new ArgumentNullException("propName");
-            else if(value == null)
+            else if (value == null)
                 throw new ArgumentNullException("value");
 
             _toWrite[propName] = value;
@@ -103,7 +83,7 @@ namespace Ankh.Scc.Native
 
         public bool TryGetQuoted(string propName, out string value)
         {
-            if(!TryGetValue(propName, out value))
+            if (!TryGetValue(propName, out value))
                 return false;
 
             value = Unquote(value);
@@ -118,9 +98,9 @@ namespace Ankh.Scc.Native
 
         public void Flush()
         {
-            foreach(KeyValuePair<string,string> kv in _toWrite)
+            foreach (KeyValuePair<string, string> kv in _toWrite)
             {
-                SetRawValue(kv.Key, kv.Value);                
+                SetRawValue(kv.Key, kv.Value);
             }
             _toWrite.Clear();
         }
@@ -161,42 +141,6 @@ namespace Ankh.Scc.Native
         public bool WrittenKey(string key)
         {
             return _toWrite.ContainsKey(key);
-        }
-
-        private sealed class MyComPropertyBag : ICOMPropertyBag
-        {
-            private readonly IPropertyBag _bag;
-
-            public MyComPropertyBag(IPropertyBag bag)
-            {
-                this._bag = bag;
-            }
-            public int Read(string pszPropName, out object pVar, IErrorLog pErrorLog, uint VARTYPE, object pUnkObj)
-            {
-                try
-                {
-                    _bag.Read(pszPropName, out pVar, pErrorLog, VARTYPE, pUnkObj);
-                    return VSConstants.S_OK;
-                }
-                catch(Exception e)
-                {
-                    pVar = null;
-                    return Marshal.GetHRForException(e);
-                }
-            }
-
-            public int Write(string pszPropName, ref object pVar)
-            {
-                try
-                {
-                    _bag.Write(pszPropName, pVar);
-                    return VSConstants.S_OK;
-                }
-                catch (Exception e)
-                {
-                    return Marshal.GetHRForException(e);
-                }
-            }
         }
     }
 }
