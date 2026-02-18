@@ -112,23 +112,23 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="okButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="okButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>375, 0</value>
   </data>
   <data name="okButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="okButton.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
@@ -333,18 +333,6 @@
   <data name="revisionPickerStart.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="&gt;&gt;revisionPickerStart.Name" xml:space="preserve">
-    <value>revisionPickerStart</value>
-  </data>
-  <data name="&gt;&gt;revisionPickerStart.Type" xml:space="preserve">
-    <value>Ankh.UI.PathSelector.VersionSelector, Ankh.UI, Version=2.3.4480.11208, Culture=neutral, PublicKeyToken=d0beed809dd9333a</value>
-  </data>
-  <data name="&gt;&gt;revisionPickerStart.Parent" xml:space="preserve">
-    <value>fromPanel</value>
-  </data>
-  <data name="&gt;&gt;revisionPickerStart.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
   <data name="toPanel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left, Right</value>
   </data>
@@ -396,18 +384,6 @@
   <data name="revisionPickerEnd.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;revisionPickerEnd.Name" xml:space="preserve">
-    <value>revisionPickerEnd</value>
-  </data>
-  <data name="&gt;&gt;revisionPickerEnd.Type" xml:space="preserve">
-    <value>Ankh.UI.PathSelector.VersionSelector, Ankh.UI, Version=2.3.4480.11208, Culture=neutral, PublicKeyToken=d0beed809dd9333a</value>
-  </data>
-  <data name="&gt;&gt;revisionPickerEnd.Parent" xml:space="preserve">
-    <value>toPanel</value>
-  </data>
-  <data name="&gt;&gt;revisionPickerEnd.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
   <data name="pendingList.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
@@ -456,9 +432,9 @@
   <data name="&gt;&gt;label1.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="$this.Localizable" type="System.Boolean, mscorlib">
     <value>True</value>
-  </metadata>
+  </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
   </data>

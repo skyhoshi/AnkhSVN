@@ -39,19 +39,15 @@ Contents:
  
   The development documentation of the AnkhSVN project is available in
  
-    src/BUILD.txt         - How to build your own AnkhSVN version
-    src/CONTRIBUTORS.txt  - List of committers and writers of patches
-    LICENSE       - The sourcecode license of AnkhSVN
+    src/BUILD.md  - How to build your own AnkhSVN version
+    LICENSE       - The sourcecode license of AnkhSVN (Apache License)
     
   A lot more information about what is going on can be found on
       https://github.com/AmpScm/AnkhSVN
 
-
 ## 3. Participating in the AnkhSVN community
 
-  If you have any questions you can join the AnkhSVN user group on
-      users@ankhsvn.open.collab.net
+  If you have any questions you can use the issuetracker or discussions
+  here on https://github.com/ampscm/ankhsvn/
       
-  Talk on IRC with developers: irc.freenode.net, channel #ankhsvn
-  
   Or just use the discussion, issue and pull request support on GitHub

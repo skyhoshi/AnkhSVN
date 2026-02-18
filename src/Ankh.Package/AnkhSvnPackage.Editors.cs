@@ -30,7 +30,7 @@ namespace Ankh.VSPackage
         {
             AnkhDynamicEditorFactory def = new AnkhDynamicEditorFactory(this);
 
-            RegisterEditorFactory(def);
+            //RegisterEditorFactory(def);
             _runtime.GetService<IServiceContainer>().AddService(typeof(IAnkhDynamicEditorFactory), def);
         }
     }
