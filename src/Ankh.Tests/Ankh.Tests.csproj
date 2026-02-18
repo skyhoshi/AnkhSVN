@@ -42,8 +42,8 @@
     <EmbeddedResource Include="wc.zip" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Update="Microsoft.VisualStudio.SDK" />
-    <PackageReference Update="Microsoft.VSSDK.BuildTools">
+    <PackageReference Include="Microsoft.VisualStudio.SDK" />
+    <PackageReference Include="Microsoft.VSSDK.BuildTools">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>

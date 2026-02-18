@@ -1,5 +1,6 @@
 ﻿<Project>
   <!-- Import the SDK Manually, to allow including the VSTools later -->
+  <Import Project="$(VSToolsPath)\VSSDK\Microsoft.VsSDK.props" Condition="('$(VSToolsPath)' != '') And Exists('$(VSToolsPath)\VSSDK\Microsoft.VsSDK.props')" />
   <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" />
   <PropertyGroup>
     <TargetFramework>net472</TargetFramework>
@@ -25,6 +26,7 @@
     <StartAction>Program</StartAction>
     <StartProgram Condition="'$(DevEnvDir)' != ''">$(DevEnvDir)devenv.exe</StartProgram>
     <StartArguments>/rootsuffix Exp</StartArguments>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -55,10 +57,6 @@
     <Content Remove="x64\source.extension.VsixManifest" Condition="'$(PlatformTarget)' != 'x64'" />
   </ItemGroup>
   <ItemGroup>
-    <VSIXSourceItem Include="x86\source.extension.VsixManifest" Condition="'$(UseVsSdkVersion)' &lt; '17.0'" />
-    <VSIXSourceItem Include="x64\source.extension.VsixManifest" Condition="'$(UseVsSdkVersion)' &gt;= '17.0'" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="AnkhSVN-Preview.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
@@ -67,13 +65,13 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
+    <Content Include="Package.ico">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="AnkhSvnPackage.AsyncPackage.cs" Condition="'$(UseVsSdkVersion)' &lt; '15.0'" />
     <Compile Remove="AnkhSvnPackage.LegacyPackage.cs" Condition="'$(UseVsSdkVersion)' &gt;= '15.0'" />
-    <Content Update="Package.ico">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Ankh.ExtensionPoints\Ankh.ExtensionPoints.csproj" />
@@ -82,13 +80,19 @@
     <ProjectReference Include="..\Ankh.Scc\Ankh.Scc.csproj" />
     <ProjectReference Include="..\Ankh.Services\Ankh.Services.csproj" />
     <ProjectReference Include="..\Ankh.UI\Ankh.UI.csproj" />
-      <ProjectReference Include="..\Ankh.VS.Interop\Ankh.VS.Interop.csproj" />
+    <ProjectReference Include="..\Ankh.VS.Interop\Ankh.VS.Interop.csproj" />
     <ProjectReference Include="..\Ankh.VS\Ankh.VS.csproj" />
     <ProjectReference Include="..\Ankh\Ankh.csproj" />
   </ItemGroup>
-    <ItemGroup>
-      <PackageReference Include="Microsoft.VisualStudio.SDK" />
-      <PackageReference Include="Microsoft.VSSDK.BuildTools" />
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.SDK" />
+    <PackageReference Include="Microsoft.VSSDK.BuildTools" />
+    <PackageReference Include="SharpSvn">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </PackageReference>
+    <PackageReference Include="SharpSvn.UI">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </PackageReference>
   </ItemGroup>
   <Target Name="RemoveUnneededPlatformTargets" BeforeTargets="FindSourceVsixManifest">
     <ItemGroup>
@@ -96,15 +100,19 @@
       <None Include="x64\*.VsixManifest" Condition="'$(UseVsSdkVersion)' &gt;= '17.0'" />
     </ItemGroup>
   </Target>
-   <Target Name="GenerateVSCT" BeforeTargets="ResolveAssemblyReferences;VSCTCompile">
+  <Target Name="GenerateVSCT" BeforeTargets="ResolveAssemblyReferences;VSCTCompile">
     <MakeDir Directories="$(IntermediateOutputPath).." />
-    <XslTransformation
-      XmlInputPaths="$(MSBuildProjectDirectory)\Gui\AnkhSvn.xml"
-      XslInputPath="$(MSBuildProjectDirectory)\Gui\Gui-To-Vsct.xsl"
-      OutputPaths="$(IntermediateOutputPath)..\AnkhSvn.vsct"
-      UseTrustedSettings="true"
-      Parameters="&lt;Parameter Name=&quot;BitmapResId&quot; Value=&quot;Bmp_AnkhBmp&quot; /&gt;&lt;Parameter Name=&quot;Src&quot; Value=&quot;Gui\AnkhSvn.xml&quot; /&gt;&lt;Parameter Name=&quot;Configuration&quot; Value=&quot;$(Configuration)&quot; /&gt;"
-      />
+    <XslTransformation XmlInputPaths="$(MSBuildProjectDirectory)\Gui\AnkhSvn.xml" XslInputPath="$(MSBuildProjectDirectory)\Gui\Gui-To-Vsct.xsl" OutputPaths="$(IntermediateOutputPath)..\AnkhSvn.vsct" UseTrustedSettings="true" Parameters="&lt;Parameter Name=&quot;BitmapResId&quot; Value=&quot;Bmp_AnkhBmp&quot; /&gt;&lt;Parameter Name=&quot;Src&quot; Value=&quot;Gui\AnkhSvn.xml&quot; /&gt;&lt;Parameter Name=&quot;Configuration&quot; Value=&quot;$(Configuration)&quot; /&gt;" />
+  </Target>
+
+  <Target Name="IncludeNuGetDependenciesInVsix" BeforeTargets="FindSourceVsixManifest">
+    <!-- Collect runtime dependencies from NuGet packages -->
+    <ItemGroup>
+      <!-- All runtime assets from NuGet packages -->
+      <VSIXSourceItem Include="@(RuntimeCopyLocalItems)" Condition="'%(RuntimeCopyLocalItems.NuGetPackageId)' != '' And ! $([System.String]::Copy('%(RuntimeCopyLocalItems.NuGetPackageId)').StartsWith('Microsoft.VisualStudio.')) And ! $([System.String]::Copy('%(RuntimeCopyLocalItems.NuGetPackageId)').StartsWith('envdte')) And ! $([System.String]::Copy('%(RuntimeCopyLocalItems.NuGetPackageId)').StartsWith('VSLang'))">
+        <IncludeInVSIX>true</IncludeInVSIX>
+      </VSIXSourceItem>
+    </ItemGroup>
   </Target>
 
   <!-- Import SDK targetm and then the VSSDK last -->

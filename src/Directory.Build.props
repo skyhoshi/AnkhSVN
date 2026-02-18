@@ -1,8 +1,6 @@
 <Project>
   <PropertyGroup>
-    <DisableTransitiveProjectReferences>true</DisableTransitiveProjectReferences>
     <SignAssembly>true</SignAssembly>
-    <EnableStackTraceMetadata>true</EnableStackTraceMetadata>
     <SatelliteResourceLanguages>en;en-US</SatelliteResourceLanguages>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <GenerateResourceUsePreserializedResources>false</GenerateResourceUsePreserializedResources>

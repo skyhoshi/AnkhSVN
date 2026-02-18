@@ -11,8 +11,8 @@
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Update="Microsoft.VisualStudio.SDK" Version="17.4.33103.184" />
-    <PackageReference Update="Microsoft.VSSDK.BuildTools" Version="17.4.2119">
+    <PackageReference Include="Microsoft.VisualStudio.SDK" />
+    <PackageReference Include="Microsoft.VSSDK.BuildTools">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
